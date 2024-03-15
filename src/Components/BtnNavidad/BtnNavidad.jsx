@@ -63,7 +63,7 @@ export default function AlertDialogSlide() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-          En el Rey del Pollo te brindaremos la mejor atencion y calidad de nuestros productos, te esperamos para conocernos y disfrutar de la mas rica elaboracion 😃
+          En el Rey del Pollo te brindaremos la mejor atencion y calidad en nuestros productos, te esperamos para conocernos y disfrutar de la mas rica elaboracion 😃
           </DialogContentText>
         </DialogContent>
         <DialogActions> </DialogActions>
