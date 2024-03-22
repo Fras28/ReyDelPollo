@@ -3,13 +3,17 @@
 .comandas-container {
   /* max-width: 600px; */
   margin: 0 auto;
-  padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.5rem;
 }
-
+.cont1, .cont2, .cont3 {
+  flex: 1; /* Esto permite que cada columna ocupe el mismo espacio */
+}
 .comandas-title {
   font-size: 24px;
   color: #333;
@@ -121,10 +125,15 @@
   .login-form button:hover {
     background-color: #45a049;
   }
-
+.titleEditor{
+  color: orange;
+}
   @media (max-width: 768px) {
     .contComandas {
       flex-direction: column; /* Distribuir en una sola columna */
       align-items: center; /* Centrar los elementos en la columna */
+    }
+    .cont1, .cont3 {
+      display: none;
     }
   }

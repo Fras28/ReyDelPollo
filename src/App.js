@@ -50,13 +50,13 @@ function App() {
     <div className="App">
 <Switch>
       
+          <Route exact path="/Comander" component={ComandasComponent}/>
           <Route exact path="/:id?" component={Inicio}/>
           <Route exact path="/:id/Landing" component={LandingPage}/>
           <Route exact path="/:id/Landing/Polleria" component={Polleria}/>
           <Route exact path="/:id/Landing/Almacen" component={Almacen}/>
           <Route exact path="/:id/Landing/Congelados" component={Congelados}/>
           <Route exact path="/:id/Landing/Ofertas" component={Ofertas}/>
-          <Route exact path="/:id/Landing/Comander" component={ComandasComponent}/>
           <Route exact path="/:id/bag" component={BagXX}/>
           
 </Switch>

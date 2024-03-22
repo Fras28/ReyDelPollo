@@ -1,6 +1,5 @@
 .LandingBack{
-    /* background-image:url(https://i.pinimg.com/564x/ac/95/ff/ac95ffa91025ca875854caf5e179bf38.jpg) ;interiorEditado.jpg */
-    background-image:url("../assets/bgReyDelPollo.jpg") ;
+    background-image:url("../assets/BackPC.jpg") ;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -10,18 +9,21 @@
 }
 .LandingStartContainer{
   height: 50%;
-
 }
 .landingStart{
   max-width: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* height: 100vh; */
+}
+.logoStart {
+width: 30%;
+margin: auto;
+
 }
 
-
 .marcaLanging{
-    /* background-color: rgba(255, 255, 255, 0.541); */
     padding: 1rem; 
 
 }
@@ -30,7 +32,11 @@
   color: black;
   font-family: 'Noto Serif Oriya', serif;
 }
-
+.ubi{
+  color:white;
+  font-weight:600px;
+  text-decoration-line: underline;
+}
 
 .Enter {
     padding: 0.3em 1.8em;
@@ -47,7 +53,6 @@
     height: 3rem;
     border-radius: 30px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-
   }
   
   .Enter::after {
@@ -108,4 +113,22 @@
   .btnEnter{
   margin-top: 6rem;
 }
+
+.LandingBack{
+
+  background-image:url("../assets/bgReyDelPollo.jpg") ;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.logoStart {
+  display: none;
+}
+
+
+
 }

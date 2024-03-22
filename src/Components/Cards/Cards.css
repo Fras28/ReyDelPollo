@@ -12,3 +12,8 @@ margin-bottom: 0;
 .titleSection > svg {
     margin-bottom: -7px;
 }
+.cartaEdit{
+    padding-bottom: .5rem;  
+    height: 100vh;
+    overflow: scroll;
+    }
