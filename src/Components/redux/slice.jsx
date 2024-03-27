@@ -17,6 +17,8 @@ const initialState = {
   comandasTrue:[],
   comandasFalse:[],
   usuarioComander:"",
+  proveedor:[],
+  egregos:[],
 };
 
 
@@ -59,6 +61,12 @@ export const dataSlice = createSlice({
       return {
         ...state,
         usuarioComander: action.payload,
+      };
+    },
+    fillProvee: (state, action) => {
+      return {
+        ...state,
+        proveedor: action.payload,
       };
     },
     cancelBagProducts: (state, action) => {
@@ -128,10 +136,12 @@ const API_STRAPI_ARTICTULOS = process.env.REACT_APP_API_STRAPI_ARTICTULOS;
 const API_CATEGORIAS = process.env.REACT_APP_API_STRAPI_CATEGORIAS;
 const API_COMERCIO = process.env.REACT_APP_API_STRAPI_COMERCIOS;
 const API_ORDER = process.env.REACT_APP_API_ORDER;
+const API_PROVE = process.env.REACT_APP_API_POVEEDOR;
 const jwtSecret = process.env.JWT_SECRET;
 const API_US = process.env.REACT_APP_API_USERS;
 const IDENTIFIERU = process.env.REACT_APP_IDENTIFIER;
 const PASSWORDU = process.env.REACT_APP_PASSWORD;
+
 
 export const asyncAllProducts = () => {
   return async function (dispatch) {
@@ -270,6 +280,34 @@ export const asyncOrder = ({ metodo_de_pago, pedido,tipo_pedido, name, detalle, 
 };
 
 
+export const asyncProveedor = ({ name, telefono, email, direccion }, setStatusOrder) => {
+  return async function (dispatch, getState) {
+    try {
+      // Use getState to retrieve the current state
+      const initialState = getState();
+      // Access the clave from the state
+      const clave = initialState?.alldata?.clave;      
+      // Remove the unnecessary nesting of the 'data' property
+      const data = { name, telefono, email, direccion };
+      // Perform the API request with the Authorization header
+      await axios.post(API_PROVE, data, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${clave}`, // Use clave from the state
+        },
+      });
+
+      console.log("posteado correctamente, Proveedor");
+      // Actualizar el estado para indicar que la orden se envió correctamente
+      setStatusOrder(3);
+    } catch (error) {
+      console.log(error, "from Order");
+    }
+  };
+};
+
+
+
 
 export const asyncUser = () => {
   return async function (dispatch) {
@@ -338,6 +376,33 @@ export const asyncComandas = () => {
 };
 
 
+
+export const asyncGetProv = () => {
+
+  return async function (dispatch, getState) {
+    try {
+      const initialState = getState();
+    
+      const usuarioComander = initialState?.alldata?.usuarioComander;
+ 
+
+      const response = await axios.get(API_PROVE, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${usuarioComander}`,
+        },
+      });
+
+      console.log(response.data.data, "antes de enviarlo asyncComandas");
+
+      return dispatch(fillProvee(response?.data?.data));
+    } catch (error) {
+      console.error('Error al obtener comandas:', error);
+      // Puedes dispatchar una acción para manejar el error según tus necesidades
+    }
+  };
+};
+
  
 
 export const asyncPedidoRealizado = (comanda) => {
@@ -378,7 +443,7 @@ export const asyncPedidoRealizado = (comanda) => {
 
 //----------------------------------------------------------------------------------------------------------------
 
-export const { allProducts, favProducts, cancelBagProducts, SearchProducts, allCategorias, fillComercio, fillClave, fillComanda,fillUsuario } =
+export const { allProducts, favProducts, cancelBagProducts, SearchProducts, allCategorias, fillComercio, fillClave, fillComanda,fillUsuario, fillProvee } =
   dataSlice.actions;
 
 export default dataSlice.reducer;

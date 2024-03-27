@@ -58,3 +58,10 @@
     background-color: red;
     padding: 0.5rem;
 }
+
+.boxModal{
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 2rem;
+}

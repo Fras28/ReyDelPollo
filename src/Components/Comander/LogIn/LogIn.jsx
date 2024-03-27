@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
-import { asyncComandas, asyncLogIn } from '../redux/slice';
+import { asyncComandas, asyncGetProv, asyncLogIn, asyncProveedor } from '../../redux/slice';
 import './LoginComponent.css'; // Importa tu archivo de estilos CSS
 
 const LoginComponent = ({ onLoginSuccess }) => {
@@ -32,31 +32,37 @@ const LoginComponent = ({ onLoginSuccess }) => {
     try {
       // Activar el estado de carga
       setIsLoading(true);
-
+  
       // Realizar el inicio de sesión
       await dispatch(asyncLogIn(credentials));
-
-      // Si la acción asyncLogIn se resuelve correctamente, cerrar la modal
-      setModalIsOpen(false);
-
+  
+      // Si la acción asyncLogIn se resuelve correctamente y usuarioComander está definido, cerrar la modal
+      if (usuarioComander) {
+        setModalIsOpen(false);
+      } 
+  
       // Ejecutar la función onLoginSuccess si es necesario
       onLoginSuccess();
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       // Puedes manejar el error si es necesario
-    } finally {
+    }
+     finally {
       // Desactivar el estado de carga independientemente de si la petición se realizó con éxito o no
       setIsLoading(false);
     }
   };
 
+
+
+
   return (
-    <div>
-      <Modal
-        isOpen={comandas.length === 0}
-        onRequestClose={() => setModalIsOpen(false)}
-        contentLabel="Login Modal"
-      >
+    <div className='bgModal' >
+   <Modal
+  isOpen={modalIsOpen && (comandas.length === 0 || !usuarioComander)}
+  onRequestClose={() => setModalIsOpen(false)}
+  contentLabel="Login Modal"
+>
         <div className="login-container">
           <h2 className="login-heading">Log In</h2>
           <form>

@@ -16,7 +16,8 @@ import { asyncAllProducts, asyncCategorias, asyncComercio, asyncUser } from './C
 import { useDispatch, useSelector } from 'react-redux';
 import store, { saveStateToLocalStorage } from './Components/redux/store.jsx';
 import { ToastContainer } from 'react-toastify';
-import ComandasComponent from './Components/Comander/Comander.jsx';
+
+import { AdminPanel } from './Components/Comander/AdminPanel.jsx';
 // import { Bag } from './Components/Categorias/Bag.jsx';
 
 
@@ -50,7 +51,7 @@ function App() {
     <div className="App">
 <Switch>
       
-          <Route exact path="/Comander" component={ComandasComponent}/>
+          <Route exact path="/Comander" component={AdminPanel}/>
           <Route exact path="/:id?" component={Inicio}/>
           <Route exact path="/:id/Landing" component={LandingPage}/>
           <Route exact path="/:id/Landing/Polleria" component={Polleria}/>

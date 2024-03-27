@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Comander.css";
-import { asyncComandas, asyncPedidoRealizado } from "../redux/slice";
+import { asyncComandas, asyncPedidoRealizado } from "../../redux/slice";
 import LoginComponent from "./LogIn";
 
 const CardComanda = (comanda) => {
