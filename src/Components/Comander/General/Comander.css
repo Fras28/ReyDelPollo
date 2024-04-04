@@ -30,9 +30,7 @@ body {
 .cont2 {
   border-left: orange solid 0.2rem;
   border-right: orange solid 0.2rem;
-
-
-
+width: 75%;
 }
 
 .comandas-title {
