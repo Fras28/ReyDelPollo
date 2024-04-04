@@ -11,6 +11,7 @@ const initialState = {
   copyallProducts: [],
   favProd: [],
   categorias:[],
+  subCategorias:[],
   comercio:[],
   clave:"",
   comandas:[],
@@ -37,6 +38,13 @@ export const dataSlice = createSlice({
       return {
         ...state,
         categorias: action.payload,
+      };
+    },
+
+    allSubCategorias: (state, action) => {
+      return {
+        ...state,
+        subCategorias: action.payload,
       };
     },
     fillComercio: (state, action) => {
@@ -141,6 +149,8 @@ const jwtSecret = process.env.JWT_SECRET;
 const API_US = process.env.REACT_APP_API_USERS;
 const IDENTIFIERU = process.env.REACT_APP_IDENTIFIER;
 const PASSWORDU = process.env.REACT_APP_PASSWORD;
+const API_SUBCAT= process.env.REACT_APP_API_STRAPI_SUBCATEGORIAS;
+const API_GENERAL = process.env.REACT_APP_API_STRAPI
 
 
 export const asyncAllProducts = () => {
@@ -203,6 +213,7 @@ export const asyncComercio = () => {
     }
   };
 };
+
 export const asyncCategorias = () => {
   return async function (dispatch) {
     try {
@@ -214,6 +225,23 @@ export const asyncCategorias = () => {
     }
   };
 };
+
+
+
+export const asyncSubCategorias = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(API_SUBCAT);
+      const categoriasOrdenadas = response.data.data.sort((a, b) => a.id - b.id);
+      return dispatch(allSubCategorias(response.data.data));
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+};
+
+
+
 
 export const asyncfavProducts = (pedido) => {
   return async function (dispatch) {
@@ -227,6 +255,7 @@ export const asyncfavProducts = (pedido) => {
     }
   };
 };
+
 export const asyncCancelFav = (pedido) => {
   return async function (dispatch) {
     try {
@@ -247,8 +276,6 @@ export const asyncSearchBar = (string) => {
     return dispatch(SearchProducts(string));
   };
 };
-
-
 
 export const asyncOrder = ({ metodo_de_pago, pedido,tipo_pedido, name, detalle, total_pedido, telefono, domicilio }) => {
   return async function (dispatch, getState) {
@@ -349,6 +376,31 @@ export const asyncLogIn = ({email,password}) => {
 
 
 
+export const asyncEditProd = (data) => {
+  return async function (dispatch, getState) {
+    const initialState = getState();
+    const usuarioComander = initialState?.alldata?.usuarioComander;
+
+    try {
+  
+      const response = await axios.put(API_GENERAL.concat(`/api/articulos/${data.data.id}`), data, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${usuarioComander}`,
+        },
+      });
+      console.log("producto editado creo q correctamente")
+console.log(response);
+      return  asyncAllProducts();
+    } catch (error) {
+      console.error("Error fetching data EditProd Slice:", error);
+    }
+  };
+};
+
+
+
+
 
 export const asyncComandas = () => {
   return async function (dispatch, getState) {
@@ -365,7 +417,6 @@ export const asyncComandas = () => {
         },
       });
 
-      console.log(response.data.data, "antes de enviarlo asyncComandas");
 
       return dispatch(fillComanda(response?.data?.data));
     } catch (error) {
@@ -374,6 +425,8 @@ export const asyncComandas = () => {
     }
   };
 };
+
+
 
 
 
@@ -393,7 +446,7 @@ export const asyncGetProv = () => {
         },
       });
 
-      console.log(response.data.data, "antes de enviarlo asyncComandas");
+
 
       return dispatch(fillProvee(response?.data?.data));
     } catch (error) {
@@ -439,11 +492,18 @@ export const asyncPedidoRealizado = (comanda) => {
       toast.error("Error during pedido realizado. Please try again.");
     }
   };
+
+
+
+
+
+
+  
 };
 
 //----------------------------------------------------------------------------------------------------------------
 
-export const { allProducts, favProducts, cancelBagProducts, SearchProducts, allCategorias, fillComercio, fillClave, fillComanda,fillUsuario, fillProvee } =
+export const { allProducts, favProducts, cancelBagProducts, SearchProducts, allCategorias,allSubCategorias, fillComercio, fillClave, fillComanda,fillUsuario, fillProvee } =
   dataSlice.actions;
 
 export default dataSlice.reducer;

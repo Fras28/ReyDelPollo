@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./formVenta.css";
-import ModalProveedor from '../../Modal/ModalConfirmacion/ModalProveedor';
+import ModalProveedor from '../../Modal/ModalConfirmacion/Modal';
 
 
 
@@ -22,19 +22,19 @@ const FormularioGastos = () => {
 
   return (
     <form onSubmit={handleSubmit} className='Formix' >
-      <h2>Gastos y Egresos</h2>
+      <h2 className='titFormix'>Gastos y Egresos</h2>
       <div>
-        <label htmlFor="nombreProveedor">Nombre del Proveedor:</label>
+        <label htmlFor="nombreProveedor" className='nombreProveedor'>Nombre del Proveedor:</label>
         <input
           type="text"
           id="nombreProveedor"
           value={nombreProveedor}
           onChange={(e) => setNombreProveedor(e.target.value)}
           required
-        />
+        /> <ModalProveedor/>
       </div>
       <div >
-        <label htmlFor="totalVenta">Total $:</label>
+        <label htmlFor="totalVenta"  className='nombreProveedor'>Total $:</label>
         <input
           type="number"
           id="totalVenta"
@@ -44,7 +44,7 @@ const FormularioGastos = () => {
         />
       </div>
       <div>
-  <label htmlFor="metodoPago">Tipo de Egresso:</label>
+  <label htmlFor="metodoPago"  className='nombreProveedor'>Tipo de Egresso:</label>
   <select
     id="metodoPago"
     value={metodoPago}
@@ -60,7 +60,7 @@ const FormularioGastos = () => {
 </div>
 
       <div>
-        <label htmlFor="nombreCajero">Nombre del cajero/a:</label>
+        <label htmlFor="nombreCajero" className='nombreProveedor'>Nombre del cajero/a:</label>
         <input
           type="text"
           id="nombreCajero"
@@ -71,7 +71,6 @@ const FormularioGastos = () => {
       </div>
       <button type="submit">Enviar</button>
 
-      <ModalProveedor/>
     </form>
   );
 };

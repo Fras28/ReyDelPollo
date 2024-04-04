@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import Dashboard from "./DashBoard/DashBoard";
 import ComandasComponent from "./General/Comander";
+import ModalGen from "../Modal/ModalConfirmacion/Modal";
+import { Editer } from "../Categorias/Editer";
 
 
 export const AdminPanel = () => {
@@ -10,9 +12,10 @@ export const AdminPanel = () => {
   return (
     <div>
       <div style={{padding:"1rem",display:"flex", justifyContent:"center" ,gap:"1rem"}}>
-      <button onClick={() => setPanel("General")}>General</button>
-      <button onClick={() => setPanel("Estadisticas")}>Estadisticas</button>
-      <button onClick={() => setPanel("Otros")}>Otros</button>
+      <button className="buttonDash" onClick={() => setPanel("General")}>General</button>
+      <button className="buttonDash" onClick={() => setPanel("Estadisticas")}>Estadisticas</button>
+      <button className="buttonDash" onClick={() => setPanel("Otros")}>Otros</button>
+      <ModalGen Child={<Editer />} txtBtn="Editar Producto"  />
       </div>
       
       {/* Aquí puedes renderizar el panel según el estado "panel" */}

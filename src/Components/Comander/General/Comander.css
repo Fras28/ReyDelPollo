@@ -10,30 +10,31 @@ body {
   margin: 35px auto;
 }
 .comandas-container {
-  /* max-width: 600px; */
   margin: 0 auto;
-  border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
   padding-top: 1.5rem;
+  margin-bottom: 5rem;
 }
-.cont1, .cont2, .cont3 {
-  flex: 1; /* Esto permite que cada columna ocupe el mismo espacio */
-}
-.cont1{
+
+.cont1 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 100%;
+  width: 25%;
+  padding-left: 20px;
 }
-.cont2{
-border-left: orange solid .2rem;
-border-right: orange solid .2rem;
-padding: .5rem;
+
+.cont2 {
+  border-left: orange solid 0.2rem;
+  border-right: orange solid 0.2rem;
+
+
+
 }
+
 .comandas-title {
   font-size: 24px;
   color: #333;
@@ -41,24 +42,20 @@ padding: .5rem;
 }
 
 .comanda-item {
+  display: flex;
+  align-items: center;
   list-style-type: none;
-  padding: 0;
-  min-width: 300px;
- 
-}
-
-.comanda-item {
-  margin-bottom: 20px;
   padding: 15px;
   border: 1px solid #ddd;
-  border-radius: 8px;
   background-color: #f9f9f9;
+  height: 50px;
+  overflow: scroll;
 }
 
 .comanda-details {
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  border-right: 3px solid #ddd;
 }
 
 .comanda-label {
@@ -80,47 +77,38 @@ padding: .5rem;
   color: #555;
 }
 
-.BtnComander{
-  padding: .5rem;
+.BtnComander {
+  padding: 0.5rem;
   border-radius: 8px;
-  background-color:#2B92D5 ;
+  background-color: #2b92d5;
 }
 
-.BtnComander:hover{
-
-  background-color:#0897f6 ;
+.BtnComander:hover {
+  background-color: #0897f6;
 }
 
-
-.BtnComander2{
-  padding: .5rem;
+.BtnComander2 {
+  padding: 0.5rem;
   border-radius: 8px;
-  background-color:yellow;
+  background-color: yellow;
 }
 
-.BtnComander2:hover{
-
-  background-color:rgb(174, 174, 0) ;
+.BtnComander2:hover {
+  background-color: rgb(174, 174, 0);
 }
 
-.contComandas{
+.contComandas {
   width: 100%;
   display: flex;
   gap: 1rem;
   justify-content: center;
-
 }
 
 /* Add additional styling as needed */
 
-  /* Estilos para el formulario de inicio de sesión */
-  
-  .login-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-  }
-  
+/* Estilos para el formulario de inicio de sesión */
+
+/*   
   .login-form {
     display: flex;
     flex-direction: column;
@@ -144,16 +132,32 @@ padding: .5rem;
   
   .login-form button:hover {
     background-color: #45a049;
-  }
-.titleEditor{
+  } */
+.titleEditor {
   color: orange;
+  margin-bottom: 0;
 }
-  @media (max-width: 768px) {
-    .contComandas {
-      flex-direction: column; /* Distribuir en una sola columna */
-      align-items: center; /* Centrar los elementos en la columna */
-    }
-    .cont1, .cont3 {
-      display: none;
-    }
+@media (max-width: 768px) {
+  .contComandas {
+    flex-direction: column; /* Distribuir en una sola columna */
+    align-items: center; /* Centrar los elementos en la columna */
   }
+  .cont1,
+  .cont3 {
+    display: none;
+  }
+}
+
+.FacturasCont {
+  background-color: grey;
+  border: 5px white groove;
+  height: 50%;
+}
+
+.supSectionFact{
+  background-color: lightgray;
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  padding: .2rem;
+}

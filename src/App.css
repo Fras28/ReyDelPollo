@@ -5,6 +5,9 @@ font-family: 'Sono', sans-serif; */
 /*font-family: 'Noto Serif Oriya', serif;*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 /* font-family: 'Montserrat', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap'); 
+
+
 
 .App {
   text-align: center;
@@ -34,7 +37,17 @@ font-family: 'Sono', sans-serif; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.searchBar{
+  color: orange;
+  border: 3px solid orange;
+  border-radius: 10px;
+  padding: 10px 25px;
+  background: transparent;
+  max-width: 190px;
+}
+.searchBar:active {
+  box-shadow: 2px 2px 15px orange inset;
+ }
 
 @keyframes App-logo-spin {
   from {

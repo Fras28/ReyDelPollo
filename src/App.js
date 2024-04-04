@@ -12,7 +12,7 @@ import { Almacen } from './Components/Categorias/Almacen.jsx';
 import { Congelados } from './Components/Categorias/Congelados.jsx';
 import { Ofertas } from './Components/Categorias/Ofertas.jsx';
 import { BagXX } from './Components/myBag/myBag.jsx';
-import { asyncAllProducts, asyncCategorias, asyncComercio, asyncUser } from './Components/redux/slice.jsx';
+import { asyncAllProducts, asyncCategorias, asyncComercio, asyncSubCategorias, asyncUser } from './Components/redux/slice.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import store, { saveStateToLocalStorage } from './Components/redux/store.jsx';
 import { ToastContainer } from 'react-toastify';
@@ -33,6 +33,7 @@ function App() {
       dispatch(asyncComercio());
       dispatch(asyncAllProducts());
       dispatch(asyncCategorias());
+      dispatch(asyncSubCategorias());
       dispatch(asyncUser());
     };
     

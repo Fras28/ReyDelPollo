@@ -9,6 +9,8 @@ import LoginComponent from "../LogIn/LogIn.jsx";
 import SoloComandas from "./SoloComandas.jsx";
 import FormularioGastos from "../formVenta/formGastos";
 import ApexCharts from 'apexcharts';
+import ModalGen from "../../Modal/ModalConfirmacion/Modal.jsx";
+import EditProduct from "../formVenta/formEditProd.jsx";
 
 const ComandasComponent = () => {
   const dispatch = useDispatch();
@@ -46,15 +48,11 @@ const ComandasComponent = () => {
         <h2 className="titleEditor">Movimientos</h2>
         <FormularioVenta />
         <FormularioGastos/>
-        estadisticas
+  
      
       </div>
       <div className="cont2">
         <SoloComandas/>
-      </div>
-      <div className="cont3">
-        <h2 className="titleEditor">Edicion de Productos</h2>
-        <Editer />
       </div>
     </div>
   );

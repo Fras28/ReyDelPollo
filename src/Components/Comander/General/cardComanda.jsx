@@ -56,7 +56,7 @@ const CardComanda = (comanda) => {
                 </>
               ) : (
                 <label className="comanda-label" htmlFor="phone">
-                  -- Take Way
+                  Take Way
                 </label>
               )}
             </div>
