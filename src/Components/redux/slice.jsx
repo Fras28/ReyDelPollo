@@ -152,7 +152,7 @@ const PASSWORDU = process.env.REACT_APP_PASSWORD;
 const API_SUBCAT= process.env.REACT_APP_API_STRAPI_SUBCATEGORIAS;
 const API_GENERAL = process.env.REACT_APP_API_STRAPI
 
-
+const comercio = 1;
 export const asyncAllProducts = () => {
   return async function (dispatch) {
     try {
@@ -179,7 +179,9 @@ export const asyncAllProducts = () => {
             item.attributes?.sub_categoria?.data &&
             item.attributes?.sub_categoria?.data?.id &&
             item.attributes?.categorias?.data &&
-            item.attributes?.categorias?.data?.id
+            item.attributes?.categorias?.data?.id &&
+            item.attributes?.comercio?.data &&
+            item.attributes?.comercio?.data?.id === comercio // Filtrar por el id del comercio igual a 1
         );
 
         // Agregar los datos filtrados de la página actual al conjunto total
@@ -196,7 +198,6 @@ export const asyncAllProducts = () => {
       }
 
       // Despachar la acción con la información completa
-    
       return dispatch(allProducts(allData));
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -207,7 +208,12 @@ export const asyncComercio = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get(API_COMERCIO);
-      return dispatch(fillComercio(response.data.data));
+      const comercioFiltrado = response.data.data.find(comercioData => comercioData.id === comercio); // Buscar el comercio con el id igual al valor de la constante comercio
+      if (comercioFiltrado) {
+        return dispatch(fillComercio(comercioFiltrado));
+      } else {
+        console.error("No se encontró el comercio con el ID especificado.");
+      }
     } catch (error) {
       console.error("Error fetching data comercio:", error);
     }
@@ -218,8 +224,9 @@ export const asyncCategorias = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get(API_CATEGORIAS);
-      const categoriasOrdenadas = response.data.data.sort((a, b) => a.id - b.id);
-      return dispatch(allCategorias(response.data.data));
+      const categoriasFiltradas = response.data.data.filter(categoria => categoria.attributes.comercio.data.id === comercio); // Filtrar las categorías cuyo comercio tenga el id igual al valor de la constante comercio
+      const categoriasOrdenadas = categoriasFiltradas.sort((a, b) => a.id - b.id); // Ordenar las categorías filtradas
+      return dispatch(allCategorias(categoriasOrdenadas));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -232,8 +239,9 @@ export const asyncSubCategorias = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get(API_SUBCAT);
-      const categoriasOrdenadas = response.data.data.sort((a, b) => a.id - b.id);
-      return dispatch(allSubCategorias(response.data.data));
+      const subCategoriasFiltradas = response.data.data.filter(subCategoria => subCategoria.attributes.comercio.data.id === comercio); // Filtrar las subcategorías cuyo comercio tenga el id igual al valor de la constante comercio
+      const subCategoriasOrdenadas = subCategoriasFiltradas.sort((a, b) => a.id - b.id); // Ordenar las subcategorías filtradas
+      return dispatch(allSubCategorias(subCategoriasOrdenadas));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
