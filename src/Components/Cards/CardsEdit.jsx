@@ -8,7 +8,7 @@ export const CardsEdite = ({ products }) => {
   // console.log(products[0]?.attributes, "que llega a la card");
   return (
     <div className="cartaEdit" >
-      <div className="rowsCard">
+      <div className="rowsCardEdit">
         {products?.map((e) => (
           <CardEdite producto={e} />
         ))}

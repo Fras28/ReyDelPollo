@@ -47,7 +47,7 @@
   align-items: center;
   padding-bottom: 0.3rem;
   position: sticky;
-  top: 79.5px;
+  top: 150px;
   width: 100%;
   z-index: 9999;
   
@@ -87,6 +87,7 @@ border-radius: 24px; */
 @media (max-width: 600px) {
   .sectioner {
     justify-content: flex-start;
+    top: 100px;
   }
   .leftInfo {
     padding-left: 0;
